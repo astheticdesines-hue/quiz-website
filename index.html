@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Axiom — Problem Solving Lab</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="hero">
+
+        <div class="symbol">∑</div>
+
+        <h1>AXIOM</h1>
+
+        <p>Think deeper. Solve harder.</p>
+
+        <p id="today"></p>
+
+    </header>
+
+
+    <main>
+
+        <!-- ============================= -->
+        <!-- TEST BUILDER -->
+        <!-- ============================= -->
+
+        <section class="card">
+
+            <div class="section-label">
+                TEST BUILDER
+            </div>
+
+            <h2>🧪 Build Your Test</h2>
+
+            <p class="description">
+                Choose exactly what you want Axiom to challenge you on.
+            </p>
+
+
+            <div class="grid">
+
+
+                <div class="field">
+
+                    <label for="subject">
+                        Subject
+                    </label>
+
+                    <select id="subject">
+                        <option value="Physics">
+                            Physics
+                        </option>
+
+                        <option value="Chemistry">
+                            Chemistry
+                        </option>
+
+                        <option value="Mathematics">
+                            Mathematics
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="chapter">
+                        Chapter
+                    </label>
+
+                    <select id="chapter"></select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="topic">
+                        Topic
+                    </label>
+
+                    <select id="topic"></select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="difficulty">
+                        Difficulty
+                    </label>
+
+                    <select id="difficulty">
+
+                        <option value="school/class 12 Board">
+                            School/Class 12 Board
+                        </option>
+
+                        <option value="JEE Main">
+                            JEE Main
+                        </option>
+
+                        <option value="JEE Advanced">
+                            JEE Advanced
+                        </option>
+
+                        <option value="Olympiad">
+                            Olympiad / Very Hard
+                        </option>
+
+                        <option value="Mixed">
+                            Mixed High-Level
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="bloom">
+                        Bloom Level
+                    </label>
+
+                    <select id="bloom">
+
+                        <option value="Apply">
+                            Apply
+                        </option>
+
+                        <option value="Analyze">
+                            Analyze
+                        </option>
+
+                        <option value="Evaluate">
+                            Evaluate
+                        </option>
+
+                        <option value="Create">
+                            Create
+                        </option>
+
+                        <option value="Mixed">
+                            Mixed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="questionCount">
+                        Questions
+                    </label>
+
+                    <input
+                        id="questionCount"
+                        type="number"
+                        min="1"
+                        max="50"
+                        value="10"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="test-mode">
+
+                <h3>🧠 Test philosophy</h3>
+
+                <p>
+                    Axiom prioritizes unfamiliar situations,
+                    multi-step reasoning, conceptual traps,
+                    mathematical reasoning and deeper application
+                    over simple recall.
+                </p>
+
+            </div>
+
+
+            <button
+                class="primary"
+                onclick="startTest()"
+            >
+                ⚡ Start Axiom Test
+            </button>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- TEST AREA -->
+        <!-- ============================= -->
+
+        <section
+            id="testSection"
+            class="card hidden"
+        >
+
+            <div class="test-header">
+
+                <div>
+
+                    <div class="section-label">
+                        ACTIVE TEST
+                    </div>
+
+                    <h2 id="testTitle">
+                        Axiom Test
+                    </h2>
+
+                </div>
+
+                <div class="timer-box">
+
+                    <span>TIME</span>
+
+                    <strong id="timer">
+                        00:00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div id="questions"></div>
+
+
+            <button
+                class="submit-button"
+                onclick="submitTest()"
+            >
+                Submit Test
+            </button>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- RESULTS -->
+        <!-- ============================= -->
+
+        <section
+            id="resultSection"
+            class="card hidden"
+        >
+
+            <div class="section-label">
+                ANALYSIS
+            </div>
+
+            <h2>📊 Your Axiom Report</h2>
+
+
+            <div class="score-main">
+
+                <strong id="score">
+                    0/0
+                </strong>
+
+                <span id="percentage">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat">
+                    <span>Correct</span>
+                    <strong id="correct">0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Wrong</span>
+                    <strong id="wrong">0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Skipped</span>
+                    <strong id="skipped">0</strong>
+                </div>
+
+                <div class="stat">
+                    <span>Time</span>
+                    <strong id="timeTaken">0 min</strong>
+                </div>
+
+            </div>
+
+
+            <div class="analysis-section">
+
+                <h3>🧠 Bloom Performance</h3>
+
+                <div id="bloomAnalysis"></div>
+
+            </div>
+
+
+            <div class="analysis-section">
+
+                <h3>🔥 Difficulty Performance</h3>
+
+                <div id="difficultyAnalysis"></div>
+
+            </div>
+
+
+            <div class="analysis-section">
+
+                <h3>🎯 Topic Performance</h3>
+
+                <div id="topicAnalysis"></div>
+
+            </div>
+
+
+            <div class="analysis-section">
+
+                <h3>📖 Question Review</h3>
+
+                <div id="review"></div>
+
+            </div>
+
+
+            <button
+                class="primary"
+                onclick="newTest()"
+            >
+                🔄 Build Another Test
+            </button>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- HISTORY -->
+        <!-- ============================= -->
+
+        <section class="card">
+
+            <div class="section-label">
+                HISTORY
+            </div>
+
+            <h2>📚 Attempt History</h2>
+
+            <div id="history"></div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            AXIOM — built for deeper thinking.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
